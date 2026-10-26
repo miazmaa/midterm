@@ -78,6 +78,13 @@ scene.add(ring);
 ring.position.y = -0.5;
 ring.rotation.x = Math.PI / 2;
 
+//Saturn
+const planetGeometry = new THREE.SphereGeometry(10, 32, 16);
+const planetMaterial = new THREE.MeshBasicMaterial({ color: 0xead6b8 });
+const saturn = new THREE.Mesh(planetGeometry, planetMaterial);
+scene.add(saturn);
+saturn.position.set(15, 2, -10);
+saturn.scale.set(0.2, 0.2, 0.2);
 
 // Camera Position
 camera.position.z = 5;
