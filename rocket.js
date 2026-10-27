@@ -86,11 +86,29 @@ scene.add(saturn);
 saturn.position.set(15, 2, -10);
 saturn.scale.set(0.2, 0.2, 0.2);
 
+//Ring on planet
+const saturnRingGeometry = new THREE.TorusGeometry(1.2, 0.05, 16, 100);
+const saturnRingMaterial = new THREE.MeshBasicMaterial({ color: 0xb89c72 });
+const planetRing = new THREE.Mesh(saturnRingGeometry, saturnRingMaterial);
+scene.add(planetRing);
+planetRing.position.set(15, 2, -10);
+planetRing.scale.set(2, 2, 2);
+planetRing.rotation.x = Math.PI / 2;
+
 // Camera Position
 camera.position.z = 5;
 
-// Single Render (No Animation)
-renderer.render(scene, camera);
+// Animation
+function animate() {
+    requestAnimationFrame(animate);
+
+    saturn.rotation.y += 0.01;
+    planetRing.rotation.y -= 0.01;
+
+    renderer.render(scene, camera);
+}
+
+animate();
 
 // Resize Support
 window.addEventListener("resize", () => {
@@ -102,5 +120,4 @@ window.addEventListener("resize", () => {
         window.innerHeight
     );
 
-    renderer.render(scene, camera);
 });
