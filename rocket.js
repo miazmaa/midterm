@@ -1,6 +1,11 @@
 // Scene
 const scene = new THREE.Scene();
 
+const ambientLight = new THREE.AmbientLight(0x777777, 0.6);
+scene.add(ambientLight);
+
+
+
 // Camera
 const camera = new THREE.PerspectiveCamera(
     75,
@@ -97,7 +102,12 @@ planetRing.rotation.x = Math.PI / 2;
 
 //moon
 const moonGeometry = new THREE.SphereGeometry(0.5, 32, 16);
-const moonMaterial = new THREE.MeshBasicMaterial({ color: 0xaaaaaa });
+const moonMaterial = new THREE.MeshStandardMaterial({
+    color: 0x949799,
+    roughness: 1,
+    metalness: 0
+});
+
 const moon = new THREE.Mesh(moonGeometry, moonMaterial);
 const moonGroup = new THREE.Group();
 scene.add(moonGroup);
@@ -134,10 +144,14 @@ saucer.scale.set(0.5, 0.2, 0.5);
 const domeGeometry = new THREE.SphereGeometry(
     0.42, 24, 12,
     0, Math.PI * 2,
-    0, Math.PI
+    0, Math.PI / 2
 );
-const domeMaterial = new THREE.MeshBasicMaterial({ color: 0xf6feff });
-const dome = new THREE.Mesh(domeGeometry, domeMaterial);
+const glassMaterial = new THREE.MeshBasicMaterial({
+    color: 0x66ccff,
+    transparent: true,
+    opacity: 0.5,
+});
+const dome = new THREE.Mesh(domeGeometry, glassMaterial);
 ufo.add(dome);
 dome.scale.set(1, 0.9, 0.5);
 dome.position.set(0, 0.2, 0);
@@ -162,7 +176,6 @@ for (let i = 0; i < 500; i++) {
     );
     scene.add(star);
 }
-
 // Camera Position
 camera.position.z = 5;
 
