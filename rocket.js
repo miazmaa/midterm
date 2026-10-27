@@ -95,6 +95,32 @@ planetRing.position.set(15, 2, -10);
 planetRing.scale.set(2, 2, 2);
 planetRing.rotation.x = Math.PI / 2;
 
+//moon
+const moonGeometry = new THREE.SphereGeometry(0.5, 32, 16);
+const moonMaterial = new THREE.MeshBasicMaterial({ color: 0xaaaaaa });
+const moon = new THREE.Mesh(moonGeometry, moonMaterial);
+const moonGroup = new THREE.Group();
+scene.add(moonGroup);
+moonGroup.position.set(-20, -10, -12);
+moonGroup.add(moon);
+moon.scale.set(30, 15, 10);
+
+// Flag on the moon
+const flagPoleGeometry = new THREE.CylinderGeometry(0.025, 0.025, 1.3, 8);
+const flagPoleMaterial = new THREE.MeshBasicMaterial({ color: 0xdddddd });
+const flagPole = new THREE.Mesh(flagPoleGeometry, flagPoleMaterial);
+moonGroup.add(flagPole);
+flagPole.scale.set(5, 5, 5);
+flagPole.position.set(0, 10, 2.03);
+
+const flagGeometry = new THREE.PlaneGeometry(0.75, 0.45);
+const flagMaterial = new THREE.MeshBasicMaterial({ color: 0xff3333 });
+const flag = new THREE.Mesh(flagGeometry, flagMaterial);
+moonGroup.add(flag);
+flag.scale.set(8, 8, 8);
+flag.position.set(3, 11, 2);
+
+
 // Camera Position
 camera.position.z = 5;
 
