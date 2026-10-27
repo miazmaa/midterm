@@ -120,16 +120,49 @@ moonGroup.add(flag);
 flag.scale.set(8, 8, 8);
 flag.position.set(3, 11, 2);
 
+//UFO
+const ufo = new THREE.Group();
+scene.add(ufo);
+ufo.position.set(-10, 5, -5);
+
+const saucerGeometry = new THREE.SphereGeometry(1, 32, 16);
+const saucerMaterial = new THREE.MeshBasicMaterial({ color: 0xFFA500 });
+const saucer = new THREE.Mesh(saucerGeometry, saucerMaterial);
+ufo.add(saucer);
+saucer.scale.set(0.5, 0.2, 0.5);
+
+const domeGeometry = new THREE.SphereGeometry(
+    0.42, 24, 12,
+    0, Math.PI * 2,
+    0, Math.PI
+);
+const domeMaterial = new THREE.MeshBasicMaterial({ color: 0xf6feff });
+const dome = new THREE.Mesh(domeGeometry, domeMaterial);
+ufo.add(dome);
+dome.scale.set(1, 0.9, 0.5);
+dome.position.set(0, 0.2, 0);
+
+const rimGeometry = new THREE.TorusGeometry(0.5, 0.05, 16, 100);
+const rimMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+const rim = new THREE.Mesh(rimGeometry, rimMaterial);
+ufo.add(rim);
+rim.scale.set(1.1, 1.1, 1.1);
+rim.rotation.x = Math.PI / 2;
+rim.position.set(0, 0.02, 0);
 
 // Camera Position
 camera.position.z = 5;
 
 // Animation
+const clock = new THREE.Clock();
+const ufoBaseY = ufo.position.y;
 function animate() {
     requestAnimationFrame(animate);
 
     saturn.rotation.y += 0.01;
     planetRing.rotation.y -= 0.01;
+
+    ufo.position.y = ufoBaseY + Math.sin(clock.getElapsedTime() * 2) * 0.25;
 
     renderer.render(scene, camera);
 }
