@@ -150,6 +150,19 @@ rim.scale.set(1.1, 1.1, 1.1);
 rim.rotation.x = Math.PI / 2;
 rim.position.set(0, 0.02, 0);
 
+//stars
+const starGeometry = new THREE.SphereGeometry(0.05, 8, 8);
+const starMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+for (let i = 0; i < 500; i++) {
+    const star = new THREE.Mesh(starGeometry, starMaterial);
+    star.position.set(
+        (Math.random() - 0.5) * 100,
+        (Math.random() - 0.5) * 100,
+        (Math.random() - 0.5) * 100
+    );
+    scene.add(star);
+}
+
 // Camera Position
 camera.position.z = 5;
 
