@@ -4,7 +4,9 @@ const scene = new THREE.Scene();
 const ambientLight = new THREE.AmbientLight(0x777777, 0.6);
 scene.add(ambientLight);
 
-
+const sunlight = new THREE.DirectionalLight(0xffffff, 1.2);
+sunlight.position.set(40, 5, 10);
+scene.add(sunlight);
 
 // Camera
 const camera = new THREE.PerspectiveCamera(
@@ -85,7 +87,10 @@ ring.rotation.x = Math.PI / 2;
 
 //Saturn
 const planetGeometry = new THREE.SphereGeometry(10, 32, 16);
-const planetMaterial = new THREE.MeshBasicMaterial({ color: 0xead6b8 });
+const planetMaterial = new THREE.MeshPhongMaterial({
+    color: 0xead6b8,
+    shininess: 100
+});
 const saturn = new THREE.Mesh(planetGeometry, planetMaterial);
 scene.add(saturn);
 saturn.position.set(15, 2, -10);
@@ -93,7 +98,7 @@ saturn.scale.set(0.2, 0.2, 0.2);
 
 //Ring on planet
 const saturnRingGeometry = new THREE.TorusGeometry(1.2, 0.05, 16, 100);
-const saturnRingMaterial = new THREE.MeshBasicMaterial({ color: 0xb89c72 });
+const saturnRingMaterial = new THREE.MeshPhongMaterial({ color: 0xb89c72, shininess: 100 });
 const planetRing = new THREE.Mesh(saturnRingGeometry, saturnRingMaterial);
 scene.add(planetRing);
 planetRing.position.set(15, 2, -10);
