@@ -34,7 +34,7 @@ scene.add(body);
 
 // Nose Cone
 const noseGeometry = new THREE.ConeGeometry(1, 1, 5);
-const noseMaterial = new THREE.MeshBasicMaterial({
+const noseMaterial = new THREE.MeshLambertMaterial({
     color: 0x7f00ff
 });
 const nose = new THREE.Mesh(noseGeometry, noseMaterial);
