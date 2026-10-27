@@ -24,8 +24,8 @@ document.body.appendChild(renderer.domElement);
 
 // Rocket Body
 const bodyGeometry = new THREE.CylinderGeometry(1, 1, 2, 10);
-const bodyMaterial = new THREE.MeshBasicMaterial({
-    color: 0x00ffff
+const bodyMaterial = new THREE.MeshLambertMaterial({
+    color: 0x301934
 });
 const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
 scene.add(body);
@@ -49,15 +49,17 @@ const flame = new THREE.Mesh(flameGeometry, flameMaterial);
 scene.add(flame);
 flame.rotation.z = Math.PI;
 flame.position.y = -1.5;
-
+const glassMaterial = new THREE.MeshBasicMaterial({
+    color: 0x66ccff,
+    transparent: true,
+    opacity: 0.5,
+});
 // Window (Bonus)
 const windowGeometry = new THREE.CircleGeometry(0.3, 32);
-const windowMaterial = new THREE.MeshBasicMaterial({
-    color: 0x000080
-});
+
 const rocketWindow = new THREE.Mesh(
     windowGeometry,
-    windowMaterial
+    glassMaterial
 );
 rocketWindow.position.set(0, 0.0, 1);
 scene.add(rocketWindow);
@@ -151,11 +153,7 @@ const domeGeometry = new THREE.SphereGeometry(
     0, Math.PI * 2,
     0, Math.PI / 2
 );
-const glassMaterial = new THREE.MeshBasicMaterial({
-    color: 0x66ccff,
-    transparent: true,
-    opacity: 0.5,
-});
+
 const dome = new THREE.Mesh(domeGeometry, glassMaterial);
 ufo.add(dome);
 dome.scale.set(1, 0.9, 0.5);
