@@ -126,6 +126,19 @@ window.addEventListener("keydown", (event) => {
     }
 });
 
+window.addEventListener("keydown", (event) => {
+    if (event.code === "KeyA" && !event.repeat) {
+        ambientLight.visible = !ambientLight.visible;
+    }
+});
+
+window.addEventListener("keydown", (event) => {
+    if (event.code === "KeyS" && !event.repeat) {
+        spotlight.visible = !spotlight.visible;
+    }
+});
+
+
 //moon
 const moonGeometry = new THREE.SphereGeometry(0.5, 32, 16);
 const moonMaterial = new THREE.MeshStandardMaterial({
