@@ -120,25 +120,6 @@ const pointLight = new THREE.PointLight(0x0066ff, 8, 15);
 saturn.add(pointLight);
 pointLight.position.set(9.5, 0, 0);
 
-window.addEventListener("keydown", (event) => {
-    if (event.code === "KeyP" && !event.repeat) {
-        pointLight.visible = !pointLight.visible;
-    }
-});
-
-window.addEventListener("keydown", (event) => {
-    if (event.code === "KeyA" && !event.repeat) {
-        ambientLight.visible = !ambientLight.visible;
-    }
-});
-
-window.addEventListener("keydown", (event) => {
-    if (event.code === "KeyS" && !event.repeat) {
-        spotlight.visible = !spotlight.visible;
-    }
-});
-
-
 //moon
 const moonGeometry = new THREE.SphereGeometry(0.5, 32, 16);
 const moonMaterial = new THREE.MeshStandardMaterial({
@@ -213,6 +194,26 @@ for (let i = 0; i < 500; i++) {
 }
 // Camera Position
 camera.position.z = 5;
+
+//Keyboard 
+
+window.addEventListener("keydown", (event) => {
+    if (event.code === "KeyP" && !event.repeat) {
+        pointLight.visible = !pointLight.visible;
+    }
+});
+
+window.addEventListener("keydown", (event) => {
+    if (event.code === "KeyA" && !event.repeat) {
+        ambientLight.visible = !ambientLight.visible;
+    }
+});
+
+window.addEventListener("keydown", (event) => {
+    if (event.code === "KeyS" && !event.repeat) {
+        spotlight.visible = !spotlight.visible;
+    }
+});
 
 // Animation
 const clock = new THREE.Clock();
