@@ -1,13 +1,15 @@
 // Scene
 const scene = new THREE.Scene();
 
+//Lights
 const ambientLight = new THREE.AmbientLight(0x777777, 0.6);
 scene.add(ambientLight);
 
+//added sunlight from the right side of screen
 const sunlight = new THREE.DirectionalLight(0xffffff, 1.2);
 sunlight.position.set(40, 5, 10);
 scene.add(sunlight);
-
+//orange spotlight hitting moon and rocket
 const spotlight = new THREE.SpotLight(0xffa500, 8, 30, Math.PI / 5, 0.4, 1);
 spotlight.position.set(0, 8, 6);
 spotlight.target.position.set(0, 0, 0);
@@ -104,10 +106,6 @@ scene.add(saturn);
 saturn.position.set(15, 2, -10);
 saturn.scale.set(0.2, 0.2, 0.2);
 
-const pointLight = new THREE.PointLight(0x0066ff, 8, 15);
-saturn.add(pointLight);
-pointLight.position.set(9.5, 0, 0);
-
 //Ring on planet
 const saturnRingGeometry = new THREE.TorusGeometry(1.2, 0.05, 16, 100);
 const saturnRingMaterial = new THREE.MeshPhongMaterial({ color: 0xb89c72, shininess: 100 });
@@ -116,6 +114,11 @@ scene.add(planetRing);
 planetRing.position.set(15, 2, -10);
 planetRing.scale.set(2, 2, 2);
 planetRing.rotation.x = Math.PI / 2;
+
+//blue saturn pointlight
+const pointLight = new THREE.PointLight(0x0066ff, 8, 15);
+saturn.add(pointLight);
+pointLight.position.set(9.5, 0, 0);
 
 //moon
 const moonGeometry = new THREE.SphereGeometry(0.5, 32, 16);
