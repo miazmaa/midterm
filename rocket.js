@@ -120,6 +120,12 @@ const pointLight = new THREE.PointLight(0x0066ff, 8, 15);
 saturn.add(pointLight);
 pointLight.position.set(9.5, 0, 0);
 
+window.addEventListener("keydown", (event) => {
+    if (event.code === "KeyP" && !event.repeat) {
+        pointLight.visible = !pointLight.visible;
+    }
+});
+
 //moon
 const moonGeometry = new THREE.SphereGeometry(0.5, 32, 16);
 const moonMaterial = new THREE.MeshStandardMaterial({
